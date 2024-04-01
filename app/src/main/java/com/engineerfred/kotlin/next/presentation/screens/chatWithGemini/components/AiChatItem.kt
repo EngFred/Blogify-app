@@ -76,10 +76,12 @@ fun AiChatItem(
                     contentScale = ContentScale.Fit,
                     contentDescription = null
                 )
+                Spacer(modifier = Modifier.size(5.dp))
                 Text(
                     text = prompt,
                     modifier = Modifier
                         .wrapContentSize()
+                        .clip(RoundedCornerShape(12.dp))
                         .background(captionBgColor)
                         .padding(12.dp),
                     color = Color.White,

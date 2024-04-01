@@ -122,6 +122,7 @@ fun ChatMessageItem(
                         text = chatMessage.content!!,
                         modifier = Modifier
                             .wrapContentSize()
+                            .clip(RoundedCornerShape(12.dp))
                             .background(captionBgColor)
                             .padding(12.dp),
                         color = Color.White,
@@ -216,10 +217,12 @@ fun ChatMessageItem(
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.size(5.dp))
                     Text(
                         text = chatMessage.content!!,
                         modifier = Modifier
                             .wrapContentSize()
+                            .clip(RoundedCornerShape(12.dp))
                             .background(captionBgColor)
                             .padding(12.dp),
                         color = Color.White,

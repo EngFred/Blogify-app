@@ -76,7 +76,6 @@ import com.engineerfred.kotlin.next.core.SetSystemBarColor
 import com.engineerfred.kotlin.next.presentation.screens.chat.componets.ChatMessageItem
 import com.engineerfred.kotlin.next.presentation.theme.Charcoal
 import com.engineerfred.kotlin.next.presentation.theme.CrimsonRed
-import com.engineerfred.kotlin.next.presentation.theme.SteelBlue
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -292,9 +291,9 @@ fun ChatScreen(
                                 overflow = TextOverflow.Ellipsis
                             )
                             Text(
-                                text = "last seen feature was not implemented!",
+                                text = "last seen",
                                 fontSize = 13.sp,
-                                color = SteelBlue,
+                                color = Color.LightGray,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1
                             )
