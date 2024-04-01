@@ -57,7 +57,8 @@ fun FeedsScreen(
     viewModel: FeedsViewModel = hiltViewModel(),
     commonViewModel: CommonViewModel,
     isDarkTheme: Boolean,
-    onUserProfileImageClicked: (String) -> Unit
+    onUserProfileImageClicked: (String) -> Unit,
+    onPostImageClicked: (String) -> Unit,
 ) {
 
     val uiState = viewModel.uiState
@@ -120,7 +121,8 @@ fun FeedsScreen(
             uiState.isLoading -> {
                 Box(modifier = Modifier
                     .fillMaxSize()
-                    .background(bgColor), contentAlignment = Alignment.Center ){
+                    .background(bgColor), contentAlignment = Alignment.Center
+                ){
                     CircularProgressIndicator( color = if (  isDarkTheme ) Color.White else CrimsonRed )
                 }
             }
@@ -238,7 +240,9 @@ fun FeedsScreen(
                                     viewModel.onEvent(FeedsUiEvents.PostLiked(postId, postOwnerId))
                                 }, onUnLikePost = { postId, _  ->
                                     viewModel.onEvent(FeedsUiEvents.PostUnLiked(postId))
-                                }, isDarkTheme  =isDarkTheme, onUserProfileImageClicked = onUserProfileImageClicked
+                                }, isDarkTheme  =isDarkTheme,
+                                onUserProfileImageClicked = onUserProfileImageClicked,
+                                onImageClicked = onPostImageClicked
                             )
                         }
                     }

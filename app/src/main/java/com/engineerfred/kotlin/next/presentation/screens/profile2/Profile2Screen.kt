@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,6 +56,7 @@ import com.engineerfred.kotlin.next.presentation.theme.CrimsonRed
 import com.engineerfred.kotlin.next.presentation.theme.DarkSlateGrey
 import com.engineerfred.kotlin.next.utils.formatTimestampToDateString
 import com.engineerfred.kotlin.next.utils.pluralizeWord
+import java.net.URLEncoder
 import java.util.Locale
 
 @Composable
@@ -66,6 +68,7 @@ fun Profile2Screen(
     userId: String,
     isDarkTheme: Boolean,
     onUserProfileImageClicked: (String) -> Unit,
+    onImageClicked: (String) -> Unit,
 ) {
 
     val uiState = viewModel.uiState.collectAsState().value
@@ -160,6 +163,14 @@ fun Profile2Screen(
                                             contentDescription = null,
                                             contentScale = ContentScale.Crop,
                                             modifier = Modifier
+                                                .clickable {
+                                                    if ( !user.coverImageUrl.isNullOrEmpty() ) {
+                                                        val coverImageUrl = URLEncoder.encode(user.coverImageUrl, "utf-8")
+                                                        onImageClicked.invoke(coverImageUrl)
+                                                    } else {
+                                                        Toast.makeText(context, "No cover image!", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
                                                 .align(Alignment.TopStart)
                                                 .fillMaxWidth()
                                                 .height(150.dp)
@@ -434,7 +445,8 @@ fun Profile2Screen(
                                                 },
                                                 context = context,
                                                 isDarkTheme = isDarkTheme,
-                                                onUserProfileImageClicked = onUserProfileImageClicked
+                                                onUserProfileImageClicked = onUserProfileImageClicked,
+                                                onImageClicked = onImageClicked
                                             )
                                         }
                                     }

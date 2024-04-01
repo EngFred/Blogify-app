@@ -1,6 +1,7 @@
 package com.engineerfred.kotlin.next.presentation.common
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,17 +23,20 @@ import coil.request.ImageRequest
 import com.engineerfred.kotlin.next.presentation.theme.Charcoal
 import com.engineerfred.kotlin.next.presentation.theme.CrimsonRed
 import kotlinx.coroutines.Dispatchers
+import java.net.URLEncoder
 
 @Composable
 fun PostAsyncImage(
     images: ArrayList<String>,
     isDarkTheme: Boolean,
+    onImageClicked: (String) -> Unit,
 ) {
 
     val context = LocalContext.current
 
     when (images.size) {
         1 -> {
+            val imageUrl = URLEncoder.encode(images[0], "utf-8")
             val imageRequest = ImageRequest.Builder(context)
                 .data(images[0])
                 .allowConversionToBitmap(true)
@@ -72,6 +76,7 @@ fun PostAsyncImage(
                     },
 
                     modifier = Modifier
+                        .clickable { onImageClicked.invoke(imageUrl) }
                         .align(Alignment.Center)
                         .wrapContentWidth()
                         .heightIn(max = 480.dp)
@@ -100,6 +105,8 @@ fun PostAsyncImage(
                     .memoryCachePolicy(CachePolicy.ENABLED)
                     .build()
 
+                val imageUrl1 = URLEncoder.encode(images[0], "utf-8")
+
                 SubcomposeAsyncImage(
                     model = imageRequest1,
                     loading = {
@@ -124,6 +131,7 @@ fun PostAsyncImage(
                     },
 
                     modifier = Modifier
+                        .clickable { onImageClicked.invoke(imageUrl1) }
                         .fillMaxWidth(.5f)
                         .heightIn(max = 440.dp)
                         .background(Color.Transparent),
@@ -140,6 +148,8 @@ fun PostAsyncImage(
                     .diskCachePolicy(CachePolicy.ENABLED)
                     .memoryCachePolicy(CachePolicy.ENABLED)
                     .build()
+
+                val imageUrl2 = URLEncoder.encode(images[1], "utf-8")
 
                 SubcomposeAsyncImage(
                     model = imageRequest2,
@@ -165,6 +175,7 @@ fun PostAsyncImage(
                     },
 
                     modifier = Modifier
+                        .clickable { onImageClicked.invoke(imageUrl2) }
                         .fillMaxWidth()
                         .heightIn(max = 440.dp)
                         .background(Color.Transparent),
@@ -191,6 +202,10 @@ fun PostAsyncImage(
                     .memoryCachePolicy(CachePolicy.ENABLED)
                     .build()
 
+                val imageUrl1 = URLEncoder.encode(images[0], "utf-8")
+                val imageUrl2 = URLEncoder.encode(images[1], "utf-8")
+                val imageUrl3 = URLEncoder.encode(images[2], "utf-8")
+
                 SubcomposeAsyncImage(
                     model = imageRequest,
                     loading = {
@@ -215,6 +230,9 @@ fun PostAsyncImage(
                     },
 
                     modifier = Modifier
+                        .clickable {
+                            onImageClicked.invoke(imageUrl1)
+                        }
                         .fillMaxWidth(.5f)
                         .heightIn(max = 440.dp)
                         .background(Color.Transparent),
@@ -262,6 +280,7 @@ fun PostAsyncImage(
                         },
 
                         modifier = Modifier
+                            .clickable { onImageClicked.invoke(imageUrl2) }
                             .fillMaxWidth()
                             .heightIn(max = 220.dp)
                             .background(Color.Transparent),
@@ -303,6 +322,7 @@ fun PostAsyncImage(
                         },
 
                         modifier = Modifier
+                            .clickable { onImageClicked.invoke(imageUrl3) }
                             .fillMaxWidth()
                             .heightIn(max = 220.dp)
                             .background(Color.Transparent),

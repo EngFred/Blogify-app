@@ -13,7 +13,7 @@ import com.engineerfred.kotlin.next.presentation.common.CommonViewModel
 import com.engineerfred.kotlin.next.presentation.screens.addFeeling.AddFeelingScreen
 import com.engineerfred.kotlin.next.presentation.screens.addLocation.AddLocationScreen
 import com.engineerfred.kotlin.next.presentation.screens.chat.ChatScreen
-import com.engineerfred.kotlin.next.presentation.screens.chat.componets.ChatImageViewer
+import com.engineerfred.kotlin.next.presentation.common.ImageViewer
 import com.engineerfred.kotlin.next.presentation.screens.chat.componets.ChatVideoPlayer
 import com.engineerfred.kotlin.next.presentation.screens.chatWithGemini.ChatWithGeminiScreen
 import com.engineerfred.kotlin.next.presentation.screens.commentReplies.CommentRepliesScreen
@@ -70,6 +70,10 @@ fun HomeNavGraph(
                 isDarkTheme = isDarkTheme,
                 onUserProfileImageClicked = {
                     navController.navigate( "${ScreenRoutes.Profile2.destination}/$it" ) {
+                        launchSingleTop = true
+                    }
+                }, onPostImageClicked = {
+                    navController.navigate( "${ScreenRoutes.ImageViewer.destination}/$it" ) {
                         launchSingleTop = true
                     }
                 }
@@ -254,6 +258,10 @@ fun HomeNavGraph(
                     navController.navigate( "${ScreenRoutes.Profile2.destination}/$it" ) {
                         launchSingleTop = true
                     }
+                }, onImageClicked = {
+                    navController.navigate( "${ScreenRoutes.ImageViewer.destination}/$it" ) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -316,6 +324,10 @@ fun HomeNavGraph(
                     navController.navigate( "${ScreenRoutes.Profile2.destination}/$it" ) {
                         launchSingleTop = true
                     }
+                }, onPostImageClicked = {
+                    navController.navigate( "${ScreenRoutes.ImageViewer.destination}/$it" ) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -345,6 +357,10 @@ fun HomeNavGraph(
                 isDarkTheme = isDarkTheme,
                 onUserProfileImageClicked = {
                     navController.navigate( "${ScreenRoutes.Profile2.destination}/$it" ) {
+                        launchSingleTop = true
+                    }
+                }, onImageClicked = {
+                    navController.navigate( "${ScreenRoutes.ImageViewer.destination}/$it" ) {
                         launchSingleTop = true
                     }
                 }
@@ -410,7 +426,7 @@ fun HomeNavGraph(
                         launchSingleTop = true
                     }
                 }, onViewChatImage = {
-                    navController.navigate("${ScreenRoutes.ChatImageViewer.destination}/$it") {
+                    navController.navigate("${ScreenRoutes.ImageViewer.destination}/$it") {
                         launchSingleTop = true
                     }
                 }, onViewUserProfile = {
@@ -432,13 +448,13 @@ fun HomeNavGraph(
         }
         
         composable(
-            route = "${ScreenRoutes.ChatImageViewer.destination}/{${Constants.IMAGE_URL_KEY}}",
+            route = "${ScreenRoutes.ImageViewer.destination}/{${Constants.IMAGE_URL_KEY}}",
             arguments = listOf(
                 navArgument(Constants.IMAGE_URL_KEY){ NavType.StringType }
             )
         ) {
             val imageUrl = it.arguments?.getString(Constants.IMAGE_URL_KEY)!!
-            ChatImageViewer(imageUrl = imageUrl)
+            ImageViewer(imageUrl = imageUrl)
         }
     }
 }

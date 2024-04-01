@@ -57,7 +57,8 @@ fun PostComponent(
     onLikePost: (postId: String, postOwnerId: String) -> Unit,
     onUnLikePost: (postId: String, postOwnerId: String) -> Unit,
     context: Context,
-    isDarkTheme: Boolean
+    isDarkTheme: Boolean,
+    onImageClicked: (String) -> Unit,
 ) {
 
     val btnColor = if (isDarkTheme)  DarkSlateGrey else CrimsonRed
@@ -98,7 +99,7 @@ fun PostComponent(
                 contentDescription = null,
                 modifier = Modifier
                     .clickable {
-                        if ( post.ownerId != FirebaseAuth.getInstance().uid ) {
+                        if (post.ownerId != FirebaseAuth.getInstance().uid) {
                             onUserProfileImageClicked.invoke(post.ownerId)
                         }
                     }
@@ -170,7 +171,7 @@ fun PostComponent(
                 Text(text = post.caption, modifier = Modifier.padding(horizontal = 13.dp))
             }
             post.caption.isEmpty() && post.imagesCollection.isNotEmpty() -> {
-                PostAsyncImage(images = post.imagesCollection, isDarkTheme = isDarkTheme)
+                PostAsyncImage(images = post.imagesCollection, isDarkTheme = isDarkTheme, onImageClicked)
             }
             post.caption.isNotEmpty() && post.imagesCollection.isNotEmpty() -> {
                 Column(
@@ -181,7 +182,7 @@ fun PostComponent(
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(), contentAlignment = Alignment.Center) {
-                        PostAsyncImage(images = post.imagesCollection, isDarkTheme = isDarkTheme)
+                        PostAsyncImage(images = post.imagesCollection, isDarkTheme = isDarkTheme, onImageClicked = onImageClicked )
                     }
                 }
             }
@@ -203,6 +204,7 @@ fun PostComponent(
                 )
             ) {
                 Icon(imageVector = if ( likedPost ) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = null, tint = Color.White )
+                Spacer(modifier = Modifier.size(4.dp))
                 Text(text = post.likedBy.size.toString(), color = Color.White)
             }
             Spacer(modifier = Modifier.size(5.dp))
@@ -218,10 +220,14 @@ fun PostComponent(
                 )
             ) {
                 Icon(imageVector = Icons.Rounded.CommentBank, contentDescription = null, tint = Color.White )
+                Spacer(modifier = Modifier.size(4.dp))
                 Text(text = post.commentsCount.toString(), color = Color.White)
             }
         }
         Spacer(modifier = Modifier.height(4.dp))
-        HorizontalDivider(Modifier.height(2.5.dp).background(Color.DarkGray))
+        HorizontalDivider(
+            Modifier
+                .height(2.5.dp)
+                .background(Color.DarkGray))
     }
 }

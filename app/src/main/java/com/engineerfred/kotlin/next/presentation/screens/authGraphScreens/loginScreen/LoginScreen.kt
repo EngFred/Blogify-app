@@ -1,6 +1,5 @@
 package com.engineerfred.kotlin.next.presentation.screens.authGraphScreens.loginScreen
 
-import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,26 +13,23 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.engineerfred.kotlin.next.core.SetSystemBarColor
 import com.engineerfred.kotlin.next.presentation.screens.authGraphScreens.loginScreen.components.LoginContainer
 import com.engineerfred.kotlin.next.presentation.theme.CrimsonRed
-import com.engineerfred.kotlin.next.presentation.theme.WhiteSmoke
 
 @Composable
 fun LoginScreen(
@@ -52,31 +48,17 @@ fun LoginScreen(
         uiState.isInitializing && uiState.initError.isNullOrEmpty()-> {
             Box(modifier = Modifier
                 .fillMaxSize()
-                .background(boxBg), contentAlignment = Alignment.Center){
-                if ( !isDarkTheme ) {
-                    val view = LocalView.current
-                    LaunchedEffect(key1 = Unit) {
-                        val window = (view.context as Activity).window
-                        window.statusBarColor = Color.White.toArgb()
-                        window.navigationBarColor = Color.White.toArgb()
-                    }
-                }
-                Text(text = "Just a moment...", fontWeight = FontWeight.SemiBold, fontSize = 14.sp, color = if ( isDarkTheme ) WhiteSmoke else CrimsonRed)
+                .background(boxBg), contentAlignment = Alignment.Center
+            ){
+                CircularProgressIndicator( color = if (  isDarkTheme ) Color.White else CrimsonRed )
             }
         }
 
         !uiState.isInitializing && !uiState.initError.isNullOrEmpty() -> {
             Box(modifier = Modifier
                 .fillMaxSize()
-                .background(boxBg), contentAlignment = Alignment.Center){
-                if ( !isDarkTheme ) {
-                    val view = LocalView.current
-                    LaunchedEffect(key1 = Unit) {
-                        val window = (view.context as Activity).window
-                        window.statusBarColor = Color.White.toArgb()
-                        window.navigationBarColor = Color.White.toArgb()
-                    }
-                }
+                .background(boxBg), contentAlignment = Alignment.Center
+            ){
                 Text(text = uiState.initError, fontWeight = FontWeight.SemiBold, fontSize = 14.sp, color = Color.Red)
             }
         }

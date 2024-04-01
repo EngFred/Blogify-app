@@ -25,7 +25,7 @@ sealed class ScreenRoutes( val destination: String ){
     data object ChatWithGemini : ScreenRoutes( Destinations.ChatWithGemini.name )
     data object Chat : ScreenRoutes( Destinations.Chat.name )
     data object ChatVideoPayer : ScreenRoutes( Destinations.ChatVideoPlayer.name )
-    data object ChatImageViewer : ScreenRoutes( Destinations.ChatImageViewer.name )
+    data object ImageViewer : ScreenRoutes( Destinations.ImageViewer.name )
 
     //auth
     data object Login : ScreenRoutes( Destinations.Login.name )
@@ -63,5 +63,5 @@ enum class Destinations{
     ChatWithGemini,
     Chat,
     ChatVideoPlayer,
-    ChatImageViewer,
+    ImageViewer,
 }

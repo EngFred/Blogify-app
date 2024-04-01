@@ -58,6 +58,7 @@ fun PostDetailScreen(
     commonViewModel: CommonViewModel,
     isDarkTheme: Boolean,
     onUserProfileImageClicked: (String) -> Unit,
+    onPostImageClicked: (String) -> Unit,
 ) {
 
     val uiState = viewModel.uiState.collectAsState().value
@@ -151,7 +152,8 @@ fun PostDetailScreen(
                                     },
                                     onUserProfileImageClicked = onUserProfileImageClicked,
                                     context = context,
-                                    isDarkTheme = isDarkTheme
+                                    isDarkTheme = isDarkTheme,
+                                    onImageClicked = onPostImageClicked
                                 )
                                 Text(
                                     text = "Comments:",

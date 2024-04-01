@@ -7,6 +7,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -66,6 +67,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import java.net.URLEncoder
 import java.util.Locale
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -79,6 +81,7 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(),
     isDarkTheme: Boolean,
     onUserProfileImageClicked: (String) -> Unit,
+    onImageClicked: (String) -> Unit,
 ) {
 
     val currentUser = commonViewModel.currentUser
@@ -185,10 +188,18 @@ fun ProfileScreen(
                             .height(150.dp)
                         ) {
                             AsyncImage(
-                                model = uiState.coverImageUrl.ifEmpty { currentUser.coverImageUrl },
+                                model = currentUser.coverImageUrl,
                                 contentDescription = null,
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
+                                    .clickable {
+                                        if ( !currentUser.coverImageUrl.isNullOrEmpty() ) {
+                                            val coverImageUrl = URLEncoder.encode(currentUser.coverImageUrl, "utf-8")
+                                            onImageClicked.invoke(coverImageUrl)
+                                        } else {
+                                            Toast.makeText(context, "No cover image!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
                                     .align(Alignment.TopStart)
                                     .fillMaxWidth()
                                     .height(150.dp)
@@ -277,7 +288,7 @@ fun ProfileScreen(
                         }
                         Box(modifier = Modifier.width(160.dp)) {
                             AsyncImage(
-                                model = uiState.profileImageUrl.ifEmpty { currentUser.profileImageUrl },
+                                model = currentUser.profileImageUrl,
                                 contentDescription = null,
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
@@ -594,7 +605,9 @@ fun ProfileScreen(
                                         viewModel.onEvent(ProfileUiEvents.PostUnLiked(postId))
                                     },
                                     context = context,
-                                    isDarkTheme = isDarkTheme, onUserProfileImageClicked = onUserProfileImageClicked
+                                    isDarkTheme = isDarkTheme,
+                                    onUserProfileImageClicked = onUserProfileImageClicked,
+                                    onImageClicked = onImageClicked
                                 )
                             }
                         }
