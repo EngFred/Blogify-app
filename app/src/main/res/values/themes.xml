@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Next" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Splash" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.Next</item>
+        <item name="windowSplashScreenBackground">@color/crimson_red</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/compose</item>
+    </style>
+
+</resources>
