@@ -1,5 +1,5 @@
 <h1>Blogify</h1>
-<p>Blogify is a comprehensive social media platform for Android users, offering a range of features including post sharing, liking, commenting, profile management, social connectivity, and chat functionality. Developed using Jetpack Compose, Kotlin, MVVM architecture, and Clean Architecture principles, the app provides users with a seamless experience for social interaction and content sharing.</p>
+<p>Blogify is a comprehensive social media platform for Android users, offering a range of features including post sharing, liking, commenting, profile management, social connectivity, and chat functionality. Developed using Jetpack Compose, Kotlin, MVVM architecture, and Clean Architecture principles, the app provides users with a seamless experience for social interaction and content sharing..</p>
 <h2>Features</h2>
 <ul>
   <li><strong>User Authentication:</strong> Allows users to create an account or log in securely using Firebase Authentication.</li>
