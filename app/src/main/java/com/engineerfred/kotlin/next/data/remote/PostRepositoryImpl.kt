@@ -109,6 +109,7 @@ class PostRepositoryImpl @Inject constructor(
                         trySend(Response.Success(posts))
                     }
                     if ( error != null ){
+                        Log.v("MyBlog", "ERROR Getting user posts: $error")
                         return@addSnapshotListener
                     }
                 }

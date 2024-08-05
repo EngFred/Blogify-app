@@ -1,25 +1,56 @@
 [versions]
-agp = "8.3.0"
+accompanistPermissions = "0.35.0-alpha"
+agp = "8.3.2"
+coilCompose = "2.6.0"
+coilVideo = "2.4.0"
+coreSplashscreen = "1.1.0-rc01"
+datastorePreferences = "1.1.1"
+generativeai = "0.9.0"
+hiltAndroid = "2.49"
+hiltCommon = "1.2.0"
 kotlin = "1.9.0"
-coreKtx = "1.12.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.7.0"
-activityCompose = "1.8.2"
-composeBom = "2024.02.02"
-hilt = "2.48.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinxCoroutinesAndroid = "1.7.3"
+kotlinxCoroutinesCore = "1.7.3"
+lifecycleRuntimeKtx = "2.8.4"
+activityCompose = "1.9.1"
+composeBom = "2024.06.00"
 composeNavigation = "2.7.7"
-hiltComposeNavigation = "1.1.0"
-coroutines = "1.7.3"
-googleServices = "4.4.1"
-firebaseMessaging = "23.4.1"
-firebaseAuth = "22.3.1"
-firebaseFirestore = "24.10.3"
-firebaseStorage = "20.3.0"
+googleServices = "4.4.2"
+firebaseMessaging = "24.0.0"
+firebaseAuth = "23.0.0"
+firebaseFirestore = "25.0.0"
+firebaseStorage = "21.0.0"
+lifecycleViewmodelKtx = "2.8.4"
+media3ExoplayerHls = "1.4.0"
+roomCompiler = "2.6.1"
+volley = "1.2.1"
+workRuntimeKtx = "2.9.0"
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-hilt-common = { module = "androidx.hilt:hilt-common", version.ref = "hiltCommon" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCommon" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3ExoplayerHls" }
+androidx-media3-exoplayer-hls = { module = "androidx.media3:media3-exoplayer-hls", version.ref = "media3ExoplayerHls" }
+androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3ExoplayerHls" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomCompiler" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomCompiler" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+coil-video = { module = "io.coil-kt:coil-video", version.ref = "coilVideo" }
+generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -39,6 +70,9 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+volley = { module = "com.android.volley:volley", version.ref = "volley" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

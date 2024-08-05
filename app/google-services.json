@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "703910863994",
-    "project_id": "next-8d9a1",
-    "storage_bucket": "next-8d9a1.appspot.com"
+    "project_number": "751167285703",
+    "project_id": "blogify-77255",
+    "storage_bucket": "blogify-77255.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:703910863994:android:a9592b8e22e6be03aa87c3",
+        "mobilesdk_app_id": "1:751167285703:android:9b2897302731a0880191e2",
         "android_client_info": {
           "package_name": "com.engineerfred.kotlin.next"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDBeGq1msp2rxklvJEM7ZQaAAB4Y7ig2zw"
+          "current_key": "AIzaSyBmKD6J03a3iJQZjcPjNPhkNqtwYEuI8mE"
         }
       ],
       "services": {

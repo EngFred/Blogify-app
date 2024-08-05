@@ -237,7 +237,7 @@ fun PostDetailScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             TextField(
-                                modifier = Modifier.weight(1f).height(55.dp),
+                                modifier = Modifier.weight(1f),
                                 value = uiState.inputTextValue,
                                 onValueChange = {
                                     viewModel.onEvent(PostDetailEvents.CommentTextChanged(it))
@@ -250,10 +250,7 @@ fun PostDetailScreen(
                                 placeholder = {
                                     Text(text = if ( !uiState.isReplying ) "Write a comment..." else "Write a reply...", fontSize = 13.sp)
                                 },
-                                textStyle = TextStyle(
-                                    fontSize = 13.sp
-                                ),
-                                shape = RoundedCornerShape(33.dp),
+                                shape = RoundedCornerShape(12.dp),
                                 keyboardOptions = KeyboardOptions( imeAction = ImeAction.Done ),
                                 keyboardActions = KeyboardActions(
                                     onDone = { focusManager.clearFocus() }

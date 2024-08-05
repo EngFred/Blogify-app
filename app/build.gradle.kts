@@ -54,12 +54,6 @@ android {
 }
 
 dependencies {
-    val hilt = "2.48.1"
-    val composeNavigation = "2.7.7"
-    val hiltComposeNavigation = "1.1.0"
-    val coroutines = "1.7.3"
-    val room = "2.6.0"
-    val worker = "2.8.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -78,50 +72,50 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //dagger-hilt
-    implementation("com.google.dagger:hilt-android:${hilt}")
-    implementation("androidx.hilt:hilt-navigation-compose:${hiltComposeNavigation}")
-    kapt("com.google.dagger:hilt-android-compiler:${hilt}")
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    kapt(libs.hilt.android.compiler)
 
     //view model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     //navigation
     implementation(libs.composeNavigation)
 
     //coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     //splashScreen
-    implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
+    implementation(libs.androidx.core.splashscreen)
 
     //dataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
 
     //more material icons
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.androidx.material.icons.extended)
 
     //coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation("io.coil-kt:coil-video:2.4.0")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.video)
 
     //exoPlayer
-    implementation("androidx.media3:media3-exoplayer:1.2.1")
-    implementation("androidx.media3:media3-ui:1.2.1")
-    implementation("com.android.volley:volley:1.2.1")
-    implementation("androidx.media3:media3-exoplayer-hls:1.2.1")
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.volley)
+    implementation(libs.androidx.media3.exoplayer.hls)
 
     //room
-    implementation("androidx.room:room-runtime:$room")
-    implementation("androidx.room:room-ktx:$room")
-    ksp("androidx.room:room-compiler:$room")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     // Kotlin + coroutines -workerManager
-    implementation("androidx.work:work-runtime-ktx:$worker")
-    implementation("androidx.hilt:hilt-common:1.1.0")
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.hilt.common)
 
     //permissions
-    implementation("com.google.accompanist:accompanist-permissions:0.35.0-alpha")
+    implementation(libs.accompanist.permissions)
 
     //firebase
     implementation(libs.firebase.messaging)
@@ -129,7 +123,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
 
-    implementation("com.google.ai.client.generativeai:generativeai:0.1.2")
+    implementation(libs.generativeai)
 }
 
 kapt {

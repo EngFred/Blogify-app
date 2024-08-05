@@ -188,7 +188,7 @@ fun CreateScreen(
             )
 
             val captionPaceHolder = if ( uiState.postType == PostType.Post.name  ) {
-                if ( uiState.imagesCollection.isEmpty() ) "What's on your mind" else "Add a caption..."
+                if ( uiState.imagesCollection.isEmpty() ) "What's on your mind?" else "Add a caption..."
             } else {
                 if ( uiState.videoUrl.isNullOrEmpty() ) "What's on your mind?" else "Add a caption to your video"
             }
@@ -322,7 +322,7 @@ fun CreateScreen(
                         } else galleryLauncher.launch("video/*")
                     },
                     imageVectorIcon = if ( uiState.postType == PostType.Post.name ) Icons.Rounded.Image else Icons.Rounded.VideoCameraBack,
-                    title = "Pick Photo/Video",
+                    title = if ( uiState.postType == PostType.Post.name ) "Pick Photo" else "Pick Video",
                     iconTint = CrimsonRed
                 )
                 Spacer(modifier = Modifier.size(10.dp))

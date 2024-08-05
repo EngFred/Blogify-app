@@ -130,17 +130,17 @@ fun ChatScreen(
         }
     }
 
-    val videoGalleryLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) {
-        try {
-            if ( it != null ) {
-                viewModel.onEvent( ChatUiEvents.MediaUrlChanged("$it", "video") )
-            }
-        } catch( ex: Exception ) {
-            ex.printStackTrace()
-        }
-    }
+//    val videoGalleryLauncher = rememberLauncherForActivityResult(
+//        contract = ActivityResultContracts.GetContent()
+//    ) {
+//        try {
+//            if ( it != null ) {
+//                viewModel.onEvent( ChatUiEvents.MediaUrlChanged("$it", "video") )
+//            }
+//        } catch( ex: Exception ) {
+//            ex.printStackTrace()
+//        }
+//    }
 
     if ( isDialogVisible ) {
         AlertDialog(
@@ -578,72 +578,71 @@ fun ChatScreen(
                                     contentDescription = null
                                 )
                             }
-                            IconButton(onClick = {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                    if ( galleryPerm3.status.isGranted ) {
-                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
-                                        videoGalleryLauncher.launch("video/*")
-                                    } else {
-                                        if (galleryPerm3.status.shouldShowRationale) {
-                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
-                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
-                                                    " to select and send videos. Please grant the permission."
-                                            isDialogVisible = true
-                                        } else {
-                                            // If it's the first time the user lands on this feature
-                                            galleryPerm3.launchPermissionRequest()
-                                            if ( galleryPerm3.status.isGranted ) {
-                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                    }
-                                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                    if ( galleryPerm2.allPermissionsGranted ) {
-                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
-                                        videoGalleryLauncher.launch("video/*")
-                                    } else {
-                                        if (galleryPerm2.shouldShowRationale) {
-                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
-                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
-                                                    " to select and send videos. Please grant the permission."
-                                            isDialogVisible = true
-                                        } else {
-                                            // If it's the first time the user lands on this feature
-                                            galleryPerm2.launchMultiplePermissionRequest()
-                                            if ( galleryPerm2.allPermissionsGranted ) {
-                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    if ( galleryPerm1.status.isGranted ) {
-                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
-                                        videoGalleryLauncher.launch("video/*")
-                                    } else {
-                                        if (galleryPerm1.status.shouldShowRationale) {
-                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
-                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
-                                                    " to select and send videos. Please grant the permission."
-                                            isDialogVisible = true
-                                        } else {
-                                            // If it's the first time the user lands on this feature
-                                            galleryPerm1.launchPermissionRequest()
-                                            if ( galleryPerm1.status.isGranted ) {
-                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                    }
-                                }
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Rounded.VideoLibrary,
-                                    contentDescription = null
-                                )
-                            }
+//                            IconButton(onClick = {
+//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+//                                    if ( galleryPerm3.status.isGranted ) {
+//                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
+//                                        videoGalleryLauncher.launch("video/*")
+//                                    } else {
+//                                        if (galleryPerm3.status.shouldShowRationale) {
+//                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
+//                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
+//                                                    " to select and send videos. Please grant the permission."
+//                                            isDialogVisible = true
+//                                        } else {
+//                                            // If it's the first time the user lands on this feature
+//                                            galleryPerm3.launchPermissionRequest()
+//                                            if ( galleryPerm3.status.isGranted ) {
+//                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
+//                                            }
+//                                        }
+//                                    }
+//                                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                                    if ( galleryPerm2.allPermissionsGranted ) {
+//                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
+//                                        videoGalleryLauncher.launch("video/*")
+//                                    } else {
+//                                        if (galleryPerm2.shouldShowRationale) {
+//                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
+//                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
+//                                                    " to select and send videos. Please grant the permission."
+//                                            isDialogVisible = true
+//                                        } else {
+//                                            // If it's the first time the user lands on this feature
+//                                            galleryPerm2.launchMultiplePermissionRequest()
+//                                            if ( galleryPerm2.allPermissionsGranted ) {
+//                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
+//                                            }
+//                                        }
+//                                    }
+//                                } else {
+//                                    if ( galleryPerm1.status.isGranted ) {
+//                                        viewModel.onEvent( ChatUiEvents.MediaUrlChanged("","") )
+//                                        videoGalleryLauncher.launch("video/*")
+//                                    } else {
+//                                        if (galleryPerm1.status.shouldShowRationale) {
+//                                            // If the user has denied the permission but the rationale can be shown, then gently explain why the app requires this permission
+//                                            textToShow = "The app needs to access your phone gallery inorder to be able" +
+//                                                    " to select and send videos. Please grant the permission."
+//                                            isDialogVisible = true
+//                                        } else {
+//                                            // If it's the first time the user lands on this feature
+//                                            galleryPerm1.launchPermissionRequest()
+//                                            if ( galleryPerm1.status.isGranted ) {
+//                                                Toast.makeText(context, "Permission granted!", Toast.LENGTH_SHORT).show()
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }) {
+//                                Icon(
+//                                    imageVector = Icons.Rounded.VideoLibrary,
+//                                    contentDescription = null
+//                                )
+//                            }
                             TextField(
                                 modifier = Modifier
-                                    .weight(1f)
-                                    .heightIn(max = 155.dp, min = 55.dp),
+                                    .weight(1f),
                                 value = uiState.messageContent,
                                 onValueChange = {
                                     viewModel.onEvent(ChatUiEvents.MessageContentChanged(it))
@@ -656,10 +655,6 @@ fun ChatScreen(
                                 placeholder = {
                                     Text(text = if ( uiState.mediaUrl.isNullOrEmpty() ) "Write a message..." else "Add a caption...", fontSize = 13.sp)
                                 },
-                                textStyle = TextStyle(
-                                    fontSize = 13.sp
-                                ),
-                                shape = RoundedCornerShape(33.dp),
                                 keyboardOptions = KeyboardOptions( imeAction = ImeAction.Done ),
                                 keyboardActions = KeyboardActions(
                                     onDone = { fm.clearFocus() }
